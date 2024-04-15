@@ -1,6 +1,6 @@
-import { Button, Checkbox, HStack, List, ListItem, filter } from "@chakra-ui/react";
+import { Button, Checkbox, HStack, List, ListItem } from "@chakra-ui/react";
 import { Todo } from "../Todo.type";
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent } from "react";
 
 type TodoListProps = {
   todoList: Todo[];

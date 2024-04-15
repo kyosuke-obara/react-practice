@@ -7,8 +7,6 @@ export type TodoListFilterProps = UseTodoListFilterReturn;
  * @see https://github.com/Ryochike/react-practice/issues/7
  */
 export function TodoListFilter({
-  query,
-  status,
   handleFilterStatusChange,
   handleQueryChange,
 }: TodoListFilterProps) {
@@ -16,7 +14,7 @@ export function TodoListFilter({
   return (
     <VStack>
       <form>
-        <input onChange={handleQueryChange}/>
+        <input placeholder="検索" style={{ border: '1px solid #ccc'}}  onChange={handleQueryChange}/>
         <div>
           <label>
             <input
