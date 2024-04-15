@@ -1,6 +1,5 @@
 import { Button, Checkbox, HStack, List, ListItem } from "@chakra-ui/react";
 import { Todo } from "../Todo.type";
-import { todo } from "node:test";
 
 type TodoListProps = {
   todoList: Todo[];
@@ -11,8 +10,6 @@ export function TodoList({ todoList }: TodoListProps) {
   const filteredTodoList = todoList;
 
   return (
-    <>
-    {todoList.length === 0 ? (<p>タスクがありません。</p>) :(
     <List spacing={2} w="100%">
       {filteredTodoList.map((todo) => {
         return (
@@ -38,6 +35,6 @@ export function TodoList({ todoList }: TodoListProps) {
           </ListItem>
         );
       })}
-    </List>)}</>
+    </List>
   );
 }
