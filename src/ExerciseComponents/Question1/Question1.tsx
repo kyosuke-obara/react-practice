@@ -15,19 +15,10 @@ import {
 function TimerModal({ isOpen, onClose }: { isOpen: any; onClose: any }) {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    if(!isOpen){
-      setCount(0);
-    }
-    const interval = setInterval(() => {
-      setCount(count => count + 1);
+    setInterval(() => {
+      setCount(count + 1);
     }, 1000);
-
-    return () => {
-      clearInterval(interval);
-      setCount(0);
-    }
-  }, [isOpen]);
-
+  }, []);
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
