@@ -12,9 +12,41 @@ export function TodoListFilter({
   handleFilterStatusChange,
   handleQueryChange,
 }: TodoListFilterProps) {
+
   return (
     <VStack>
-      <p>検索フィルタのUIを実装してください</p>
+      <form>
+        <input onChange={handleQueryChange}/>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="all"
+              name="status"
+              onChange={handleFilterStatusChange}
+            />
+            全て
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="incomplete"
+              name="status"
+              onChange={handleFilterStatusChange}
+            />
+            未完了
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="complete"
+              name="status"
+              onChange={handleFilterStatusChange}
+            />
+            完了
+          </label>
+        </div>
+      </form>
     </VStack>
   );
 }

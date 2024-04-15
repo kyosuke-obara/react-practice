@@ -2,16 +2,17 @@
 // import { useState } from "react";
 // import { TodoFilterStatus, isTodoFilterStatus } from "./TodoListFilter.type";
 
-export function useTodoListFilter() {
-  // TODO: 状態で管理するようにしてください https://github.com/Ryochike/react-practice/issues/7
-  const query = "";
-  const status = "all";
+import { useState } from "react";
 
-  const handleQueryChange = (query: string) => {
-    // TODO: 検索文字列入力時の処理を実装してください https://github.com/Ryochike/react-practice/issues/7
+export function useTodoListFilter() {
+  const [query, setQuery] = useState("");
+  const [status, setStatus] = useState("all");
+
+  const handleQueryChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
   };
-  const handleFilterStatusChange = (status: string) => {
-    // TODO: ステータス入力時の処理を実装してください https://github.com/Ryochike/react-practice/issues/7
+  const handleFilterStatusChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setStatus(e.target.value);
   };
 
   return {
