@@ -3,7 +3,6 @@ import { TodoListFilter } from "./TodoListFilter/TodoListFilter";
 import { useTodoListFilter } from "./TodoListFilter/useTodoListFilter";
 import { TodoList } from "./TodoList/TodoList";
 import { useState } from "react";
-import { defaultTodoList } from "./Todo.fixture";
 
 export function TodoApp() {
   const [todoList, setTodoList] = useState([]);
@@ -14,7 +13,7 @@ export function TodoApp() {
       <VStack gap={4} align="start">
         <TodoListFilter {...todoListFilter} />
         {todoList.length === 0 ? (<p>タスクがありません。</p>) :(
-        <TodoList todoList={[]} />)}
+        <TodoList todoList={todoList} />)}
       </VStack>
     </Box>
   );
