@@ -9,6 +9,8 @@ export function TodoList({ todoList }: TodoListProps) {
   // TODO: フィルタリングロジックを実装してください https://github.com/Ryochike/react-practice/issues/7
   const filteredTodoList = todoList;
 
+  if(todoList.length == 0) {return <p>タスクがありません。</p>}
+
   return (
     <List spacing={2} w="100%">
       {filteredTodoList.map((todo) => {
