@@ -1,50 +1,23 @@
-import { VStack } from "@chakra-ui/react";
+import { VStack, Input, RadioGroup, Radio } from "@chakra-ui/react";
 import type { UseTodoListFilterReturn } from "./useTodoListFilter";
 
 export type TodoListFilterProps = UseTodoListFilterReturn;
 
-/**
- * @see https://github.com/Ryochike/react-practice/issues/7
- */
 export function TodoListFilter({
+  query,
+  status,
   handleFilterStatusChange,
   handleQueryChange,
 }: TodoListFilterProps) {
 
   return (
     <VStack>
-      <form>
-        <input placeholder="検索" style={{ border: '1px solid #ccc'}}  onChange={handleQueryChange}/>
-        <div>
-          <label>
-            <input
-              type="radio"
-              value="all"
-              name="status"
-              onChange={handleFilterStatusChange}
-            />
-            全て
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="incomplete"
-              name="status"
-              onChange={handleFilterStatusChange}
-            />
-            未完了
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="complete"
-              name="status"
-              onChange={handleFilterStatusChange}
-            />
-            完了
-          </label>
-        </div>
-      </form>
+      <Input placeholder="検索" value={query} onChange={(e) => { handleQueryChange(e.target.value); }} />
+      <RadioGroup value={status} onChange={(value) => { handleFilterStatusChange(value); }}>
+        <Radio value="all">全て</Radio>
+        <Radio value="incomplete">未完了</Radio>
+        <Radio value="complete">完了</Radio>
+      </RadioGroup>
     </VStack>
   );
 }

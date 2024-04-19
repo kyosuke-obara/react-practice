@@ -8,11 +8,11 @@ export function useTodoListFilter() {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("all");
 
-  const handleQueryChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+  const handleQueryChange = (query: string) => {
+    setQuery(query);
   };
-  const handleFilterStatusChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setStatus(e.target.value);
+  const handleFilterStatusChange = (status: string) => {
+    setStatus(status);
   };
 
   return {
