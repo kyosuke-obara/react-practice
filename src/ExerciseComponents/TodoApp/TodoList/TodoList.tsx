@@ -9,22 +9,39 @@ type TodoListProps = {
     status: string;
     handleFilterStatusChange: (status: string) => void;
     handleQueryChange: (query: string) => void;
-  }
+  };
 };
 
 export function TodoList({ todoList, todoListFilter }: TodoListProps) {
   const filteredTodoList = todoList.filter((todo: Todo) => {
     switch (todoListFilter.status) {
       case "all":
-        return todo && todo.title.toLocaleLowerCase().includes(todoListFilter.query.toLocaleLowerCase())
-      case "incomplete":
-        return !todo.completed && todo.title.toLocaleLowerCase().includes(todoListFilter.query.toLocaleLowerCase())
+        return (
+          todo &&
+          todo.title
+            .toLocaleLowerCase()
+            .includes(todoListFilter.query.toLocaleLowerCase())
+        );
+      case "active":
+        return (
+          !todo.completed &&
+          todo.title
+            .toLocaleLowerCase()
+            .includes(todoListFilter.query.toLocaleLowerCase())
+        );
       case "complete":
-        return todo.completed && todo.title.toLocaleLowerCase().includes(todoListFilter.query.toLocaleLowerCase())
+        return (
+          todo.completed &&
+          todo.title
+            .toLocaleLowerCase()
+            .includes(todoListFilter.query.toLocaleLowerCase())
+        );
     }
-  })
+  });
 
-  if (todoList.length === 0) { return <p>タスクがありません。</p> }
+  if (todoList.length === 0) {
+    return <p>タスクがありません。</p>;
+  }
 
   return (
     <List spacing={2} w="100%">

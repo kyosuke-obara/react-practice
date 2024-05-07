@@ -9,13 +9,12 @@ export function TodoListFilter({
   handleFilterStatusChange,
   handleQueryChange,
 }: TodoListFilterProps) {
-
   return (
     <VStack>
-      <Input placeholder="検索" value={query} onChange={(e) => { handleQueryChange(e.target.value); }} />
-      <RadioGroup value={status} onChange={(value) => { handleFilterStatusChange(value); }}>
+      <Input placeholder="検索" value={query} onChange={handleQueryChange} />
+      <RadioGroup value={status} onChange={handleFilterStatusChange}>
         <Radio value="all">全て</Radio>
-        <Radio value="incomplete">未完了</Radio>
+        <Radio value="active">未完了</Radio>
         <Radio value="complete">完了</Radio>
       </RadioGroup>
     </VStack>

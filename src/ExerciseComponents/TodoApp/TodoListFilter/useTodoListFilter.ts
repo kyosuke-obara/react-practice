@@ -2,14 +2,14 @@
 // import { useState } from "react";
 // import { TodoFilterStatus, isTodoFilterStatus } from "./TodoListFilter.type";
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 export function useTodoListFilter() {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("all");
 
-  const handleQueryChange = (query: string) => {
-    setQuery(query);
+  const handleQueryChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
   };
   const handleFilterStatusChange = (status: string) => {
     setStatus(status);
