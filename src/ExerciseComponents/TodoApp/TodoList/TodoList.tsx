@@ -8,7 +8,7 @@ type TodoListProps = {
     query: string;
     status: string;
     handleFilterStatusChange: (status: string) => void;
-    handleQueryChange: (query: string) => void;
+    handleQueryChange: (e: ChangeEvent<HTMLInputElement>) => void;
   };
 };
 
