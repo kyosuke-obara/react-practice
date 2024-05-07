@@ -1,11 +1,8 @@
-import { VStack } from "@chakra-ui/react";
+import { VStack, Input, RadioGroup, Radio } from "@chakra-ui/react";
 import type { UseTodoListFilterReturn } from "./useTodoListFilter";
 
 export type TodoListFilterProps = UseTodoListFilterReturn;
 
-/**
- * @see https://github.com/Ryochike/react-practice/issues/7
- */
 export function TodoListFilter({
   query,
   status,
@@ -14,7 +11,12 @@ export function TodoListFilter({
 }: TodoListFilterProps) {
   return (
     <VStack>
-      <p>検索フィルタのUIを実装してください</p>
+      <Input placeholder="検索" value={query} onChange={handleQueryChange} />
+      <RadioGroup value={status} onChange={handleFilterStatusChange}>
+        <Radio value="all">全て</Radio>
+        <Radio value="active">未完了</Radio>
+        <Radio value="complete">完了</Radio>
+      </RadioGroup>
     </VStack>
   );
 }
