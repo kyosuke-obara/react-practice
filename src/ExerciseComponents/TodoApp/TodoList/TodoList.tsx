@@ -1,9 +1,10 @@
 import { Button, Checkbox, HStack, List, ListItem } from "@chakra-ui/react";
 import { Todo } from "../Todo.type";
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 
 type TodoListProps = {
   todoList: Todo[];
+  setTodoList: Dispatch<SetStateAction<Todo[]>>;
   todoListFilter: {
     query: string;
     status: string;
@@ -12,7 +13,11 @@ type TodoListProps = {
   };
 };
 
-export function TodoList({ todoList, todoListFilter }: TodoListProps) {
+export function TodoList({
+  todoList,
+  setTodoList,
+  todoListFilter,
+}: TodoListProps) {
   const filteredTodoList = todoList.filter((todo: Todo) => {
     switch (todoListFilter.status) {
       case "all":
@@ -39,7 +44,7 @@ export function TodoList({ todoList, todoListFilter }: TodoListProps) {
     }
   });
 
-  if (todoList.length === 0) {
+  if (filteredTodoList.length === 0) {
     return <p>タスクがありません。</p>;
   }
 
@@ -52,7 +57,13 @@ export function TodoList({ todoList, todoListFilter }: TodoListProps) {
               <Checkbox
                 isChecked={todo.completed}
                 onChange={() => {
-                  alert("実装してください");
+                  setTodoList((prevList) =>
+                    prevList.map((item, id) =>
+                      id + 1 === todo.id
+                        ? { ...item, completed: !todo.completed }
+                        : item
+                    )
+                  );
                 }}
               >
                 {todo.title}
