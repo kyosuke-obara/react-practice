@@ -6,15 +6,14 @@ import { useTodoList } from "./TodoList/useTodoList";
 
 export function TodoApp() {
   const todoListFilter = useTodoListFilter();
-  const { todoList, toggleTodo } = useTodoList();
+  const todoListControl = useTodoList();
 
   return (
     <Box as="main" p={4} maxWidth={300} mx="auto">
       <VStack gap={4} align="start">
         <TodoListFilter {...todoListFilter} />
         <TodoList
-          todoList={todoList}
-          toggleTodo={toggleTodo}
+          todoListControl={todoListControl}
           todoListFilter={todoListFilter}
         />
       </VStack>

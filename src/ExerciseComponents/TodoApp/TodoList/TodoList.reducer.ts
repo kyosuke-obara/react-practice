@@ -35,10 +35,15 @@ export const reducer = (
 ): TodoListState => {
   switch (action.type) {
     case "toggle":
-      const updatedState = state.todoList.map((item, id) =>
-        id + 1 === action.payload.id
-          ? { ...item, completed: !item.completed }
-          : item
+      const updatedState = state.todoList.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        return todo;
+      }
       );
       return { todoList: updatedState };
     case "create":
