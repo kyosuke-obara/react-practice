@@ -35,8 +35,17 @@ export const reducer = (
 ): TodoListState => {
   switch (action.type) {
     case "toggle":
-      // TODO: トグルロジックを実装してください https://github.com/Ryochike/react-practice/issues8
-      return state;
+      const updatedState = state.todoList.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        return todo;
+      }
+      );
+      return { todoList: updatedState };
     case "create":
       // TODO: 作成ロジックを実装してください https://github.com/Ryochike/react-practice/issues/10
       return state;
