@@ -1,10 +1,18 @@
-import { Button, Checkbox, HStack, List, ListItem } from "@chakra-ui/react";
+import {
+  Button,
+  Checkbox,
+  filter,
+  HStack,
+  List,
+  ListItem,
+} from "@chakra-ui/react";
 import { Todo } from "../Todo.type";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { ChangeEvent } from "react";
+import { useTodoList } from "./useTodoList";
 
 type TodoListProps = {
   todoList: Todo[];
-  setTodoList: Dispatch<SetStateAction<Todo[]>>;
+  toggleTodo: ({ id }: { id: number }) => void;
   todoListFilter: {
     query: string;
     status: string;
@@ -15,7 +23,7 @@ type TodoListProps = {
 
 export function TodoList({
   todoList,
-  setTodoList,
+  toggleTodo,
   todoListFilter,
 }: TodoListProps) {
   const filteredTodoList = todoList.filter((todo: Todo) => {
@@ -57,13 +65,7 @@ export function TodoList({
               <Checkbox
                 isChecked={todo.completed}
                 onChange={() => {
-                  setTodoList((prevList) =>
-                    prevList.map((item, id) =>
-                      id + 1 === todo.id
-                        ? { ...item, completed: !todo.completed }
-                        : item
-                    )
-                  );
+                  toggleTodo({ id: todo.id });
                 }}
               >
                 {todo.title}

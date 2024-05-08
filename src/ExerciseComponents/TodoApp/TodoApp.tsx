@@ -2,12 +2,11 @@ import { Box, VStack } from "@chakra-ui/react";
 import { TodoListFilter } from "./TodoListFilter/TodoListFilter";
 import { useTodoListFilter } from "./TodoListFilter/useTodoListFilter";
 import { TodoList } from "./TodoList/TodoList";
-import { defaultTodoList } from "./Todo.fixture";
-import { useState } from "react";
+import { useTodoList } from "./TodoList/useTodoList";
 
 export function TodoApp() {
   const todoListFilter = useTodoListFilter();
-  const [todoList, setTodoList] = useState(defaultTodoList);
+  const { todoList, toggleTodo } = useTodoList();
 
   return (
     <Box as="main" p={4} maxWidth={300} mx="auto">
@@ -15,7 +14,7 @@ export function TodoApp() {
         <TodoListFilter {...todoListFilter} />
         <TodoList
           todoList={todoList}
-          setTodoList={setTodoList}
+          toggleTodo={toggleTodo}
           todoListFilter={todoListFilter}
         />
       </VStack>
