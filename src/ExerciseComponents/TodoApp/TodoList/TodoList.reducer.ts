@@ -50,11 +50,9 @@ export const reducer = (
       // TODO: 作成ロジックを実装してください https://github.com/Ryochike/react-practice/issues/10
       return state;
     case "delete":
-      const deletedState = state.todoList.filter((todo) => (
-        todo.id !== action.payload.id
-      )
-      );
-      return { todoList: deletedState };
+      return {
+        todoList: state.todoList.filter((todo) => todo.id !== action.payload.id),
+      };
     default:
       return state;
   }
