@@ -61,7 +61,7 @@ export function TodoList({ todoListControl, todoListFilter }: TodoListProps) {
               <Button
                 size="xs"
                 onClick={() => {
-                  alert("実装してください");
+                  todoListControl.deleteTodo({ id: todo.id });
                 }}
               >
                 削除
