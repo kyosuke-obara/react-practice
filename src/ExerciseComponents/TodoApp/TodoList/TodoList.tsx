@@ -1,7 +1,8 @@
 import { Button, Checkbox, HStack, List, ListItem } from "@chakra-ui/react";
 import { Todo } from "../Todo.type";
-import { ChangeEvent } from "react";
+import { ChangeEvent, Fragment } from "react";
 import { UseTodoListReturn } from "./useTodoList";
+import { TodoCreationForm } from "../TodoCreationForm/TodoCreationForm";
 
 type TodoListProps = {
   todoListControl: UseTodoListReturn;
@@ -45,31 +46,34 @@ export function TodoList({ todoListControl, todoListFilter }: TodoListProps) {
   }
 
   return (
-    <List spacing={2} w="100%">
-      {filteredTodoList.map((todo) => {
-        return (
-          <ListItem key={todo.id}>
-            <HStack justify="space-between">
-              <Checkbox
-                isChecked={todo.completed}
-                onChange={() => {
-                  todoListControl.toggleTodo({ id: todo.id });
-                }}
-              >
-                {todo.title}
-              </Checkbox>
-              <Button
-                size="xs"
-                onClick={() => {
-                  todoListControl.deleteTodo({ id: todo.id });
-                }}
-              >
-                削除
-              </Button>
-            </HStack>
-          </ListItem>
-        );
-      })}
-    </List>
+    <Fragment>
+      <TodoCreationForm onCreateTodo={todoListControl.createTodo} />
+      <List spacing={2} w="100%">
+        {filteredTodoList.map((todo) => {
+          return (
+            <ListItem key={todo.id}>
+              <HStack justify="space-between">
+                <Checkbox
+                  isChecked={todo.completed}
+                  onChange={() => {
+                    todoListControl.toggleTodo({ id: todo.id });
+                  }}
+                >
+                  {todo.title}
+                </Checkbox>
+                <Button
+                  size="xs"
+                  onClick={() => {
+                    todoListControl.deleteTodo({ id: todo.id });
+                  }}
+                >
+                  削除
+                </Button>
+              </HStack>
+            </ListItem>
+          );
+        })}
+      </List>
+    </Fragment>
   );
 }
