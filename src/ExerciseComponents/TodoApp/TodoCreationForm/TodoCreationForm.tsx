@@ -8,7 +8,7 @@ import {
 import { useRef, useState } from "react";
 
 type TodoCreationFormProps = {
-  onCreateTodo: (title: string) => void;
+  onCreateTodo: ({ title }: { title: string }) => void;
 };
 
 export function TodoCreationForm({ onCreateTodo }: TodoCreationFormProps) {
@@ -19,11 +19,13 @@ export function TodoCreationForm({ onCreateTodo }: TodoCreationFormProps) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (titleRef.current === null) {
+        if (!titleRef.current?.value.trim()) {
+          setTitleError("タスク名を入力してください");
           return;
         }
-        // TODO: 入力された値でタスクを作成する処理を実装してください https://github.com/Ryochike/react-practice/issues/10
-        onCreateTodo("TODO");
+        onCreateTodo({ title: titleRef.current?.value });
+        titleRef.current.value = "";
+        setTitleError(undefined);
       }}
     >
       <HStack gap={2} align="start">

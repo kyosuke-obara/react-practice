@@ -47,8 +47,9 @@ export const reducer = (
       );
       return { todoList: toggledState };
     case "create":
-      // TODO: 作成ロジックを実装してください https://github.com/Ryochike/react-practice/issues/10
-      return state;
+      return {
+        todoList: [...state.todoList,createTodoFixture({title: action.payload.title})]
+      };
     case "delete":
       return {
         todoList: state.todoList.filter((todo) => todo.id !== action.payload.id),
